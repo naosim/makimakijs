@@ -1,8 +1,8 @@
 /// <reference path="../makimaki/Fragment.ts" />
 /// <reference path="../jquery/jquery.d.ts" />
 class Page1Fragment extends Fragment {
-    text = 'hoge';
-    getHtml(): string { return '<div id="page1fragment_text"></div> <a id="page1fragment_link">[jump to page2]</a>'; }
+    text = 'taro';
+    getHtml(): string { return '<div id="page1fragment_text"></div> <a id="page1fragment_link">["san"を付ける画面にジャンプ]</a>'; }
     onStart() {
         super.onStart();
         this.setText(this.text);
@@ -20,6 +20,6 @@ class Page1Fragment extends Fragment {
 
     setText(text: string) {
         this.text = text;
-        $('#page1fragment_text').html(this.text);
+        $('#page1fragment_text').html('your name is ' + this.text);
     }
 }
