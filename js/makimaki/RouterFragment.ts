@@ -46,11 +46,13 @@ class FragmentsController {
         var current = this.fragmentHistory.current();
         var fragment = current.fragment;
         fragment.destroy();
+        var result = fragment.result;
         $(current.id.cssId).remove();
         this.fragmentHistory.pop();
         
         $(this.fragmentHistory.current().id.cssId).css('display', 'block');
         this.fragmentHistory.current().fragment.onStart();
+        this.fragmentHistory.current().fragment.onResult(result);
     }
 
     push(fragmentClass: typeof Fragment, query:any) {
