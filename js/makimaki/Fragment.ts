@@ -18,7 +18,7 @@ class Fragment {
         
     }
 
-    init(data: {$container: any; query:any}, parent?: Fragment) {
+    init(data: {$container: any; query?:any}, parent?: Fragment) {
         this.data = data;
         this.data.$container.html(this.getHtml());
         this.parent = parent;

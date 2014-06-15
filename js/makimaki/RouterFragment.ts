@@ -84,7 +84,7 @@ class RouterFragment extends Fragment {
         super();
     }
 
-    init(data: {$container: any; query:any}, parent?: Fragment) { 
+    init(data: {$container: any; query?:any}, parent?: Fragment) { 
         super.init(data, parent);
         this.fragmentsController = new FragmentsController(data.$container);
     }

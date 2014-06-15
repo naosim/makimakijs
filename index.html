@@ -32,10 +32,8 @@
         
         <script type="text/javascript">
             $(document).ready(function(){
-                var routerFragment = new RouterFragment();
-                routerFragment.init({$container:$('#router')});
-                routerFragment.setManifest([
-                    {url: '#', fragmentClass: Page1Fragment, isFirst: true},
+                makimaki.setManifest('#router',[
+                    {url: '#',       fragmentClass: Page1Fragment, isFirst: true},
                     {url: '#/page2', fragmentClass: Page2Fragment}
                 ]);
             });
