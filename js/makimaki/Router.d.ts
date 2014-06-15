@@ -1,4 +1,4 @@
 declare class Router {
-    addRoute(url:string, action:(req:any, next:any) => void): void;
+    addRoute(url:string, action:(req:{query: any;}, next:any) => void): void;
     _onHashChange(e?:any);
 }

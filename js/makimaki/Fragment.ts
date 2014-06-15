@@ -1,15 +1,16 @@
-/// <reference path="jquery.d.ts" />
+/// <reference path="../jquery/jquery.d.ts" />
+
 class Fragment {
     "use strict";
-    $container: JQuery;
+    data: {$container: any; query?:any};
     parent: Fragment;
     constructor() {
         
     }
 
-    init($container: JQuery, parent?: Fragment) {
-        this.$container = $container;
-        this.$container.html(this.getHtml());
+    init(data: {$container: any; query:any}, parent?: Fragment) {
+        this.data = data;
+        this.data.$container.html(this.getHtml());
         this.parent = parent;
     }
     
