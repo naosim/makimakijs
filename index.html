@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <style type="text/css">
+            body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background-color: #777;
+            }
+            #router {
+                position: absolute;
+                top: 8px;
+                left: 8px;
+                bottom: 8px;
+                right: 8px;
+                border-radius: 8px 8px 8px 8px;
+                background-color: #fff;
+            }
+        </style>
+        <!-- 外部ライブラリmakimaki.jsに必要 -->
+        <script type="text/javascript" src="js/jquery/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/router/router.js"></script>
+        <!-- makimaki.js本体 -->
+        <script type="text/javascript" src="js/makimaki/Makimaki.js"></script>
+        
+        <!-- 作成するアプリ -->
+        <script type="text/javascript" src="js/app/Page1Fragment.js"></script>
+        <script type="text/javascript" src="js/app/Page2Fragment.js"></script>
+        
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var routerFragment = new RouterFragment();
+                routerFragment.init($('#router'));
+                routerFragment.setManifest([
+                    {url: '#', fragmentClass: Page1Fragment, isFirst: true},
+                    {url: '#/page2', fragmentClass: Page2Fragment}
+                ]);
+            });
+            
+            
+        </script>
+    </head>
+    <body><div id="router"></div></body>
+</html>
