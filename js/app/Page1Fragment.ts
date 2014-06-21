@@ -2,7 +2,15 @@
 /// <reference path="../jquery/jquery.d.ts" />
 class Page1Fragment extends Fragment {
     text = 'taro';
-    getHtml(): string { return '<div id="page1fragment_text"></div> <a id="page1fragment_link">["san"を付ける画面にジャンプ]</a>'; }
+    getHtml(): string {
+      var html = '';
+      //LAYOUTIMPORT START {"layout": "page1.html", "variableName":"html"}
+      html += '        <div id="page1fragment_text"></div>';
+      html += '        <a id="page1fragment_link">["san"を付ける画面にジャンプ]</a>';
+
+      //LAYOUTIMPORT END
+      return html;
+    }
     onStart() {
         super.onStart();
         this.setText(this.text);
