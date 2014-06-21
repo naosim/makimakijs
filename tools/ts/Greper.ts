@@ -3,8 +3,12 @@
 var exec = require('child_process').exec;
 class Greper {
   resultAction: (file:FilePath)=>void;
+  validAction: (path: string) => boolean;
   setResultAction(resultAction:(file:FilePath)=>void) {
     this.resultAction = resultAction;
+  }
+  setValidAction(validAction: (path: string) => boolean) {
+    this.validAction = validAction;
   }
   grep(text: string) {
     var command = 'grep -R "' + text + '" .';
@@ -12,7 +16,7 @@ class Greper {
       var lines = stdout.split('\n');
       lines.forEach((line)=>{
         var path = line.substring(0, line.indexOf(':'));
-        if(this.valid(path)) {
+        if(this.validAction ? this.validAction(path) : this.valid(path)) {
           this.resultAction(new FilePath(path));
         }
       });

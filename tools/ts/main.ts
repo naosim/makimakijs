@@ -27,6 +27,11 @@ var importer = new Importer(PREFIX);
 greper.setResultAction((file:FilePath)=>{
   layoutHtmlDecider.decideHtmlFile(file);
 });
+greper.setValidAction((path: string)=>{
+  if(path.length <= 0) return false;
+  if(path.indexOf('.ts') == -1) return false;
+  return path.indexOf('/tools/') == -1;
+});
 layoutHtmlDecider.setResultAction((result: {htmlFile: FilePath; tsFile: FilePath;}) => {
   console.log(result.htmlFile.absolute(), result.tsFile.absolute());
   importer.import(result);

@@ -34,7 +34,7 @@ class Importer {
             result += line + '\n';
           }
         });
-
+        result = result.trim();
         if(!inside) fs.writeFileSync(files.tsFile.absolute() , result);
 
       });

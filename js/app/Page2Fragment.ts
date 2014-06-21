@@ -13,6 +13,3 @@ class Page2Fragment extends Fragment {
         this.setResult(true, {text: this.data.query.text + " san"});
     }
 }
-
-
-

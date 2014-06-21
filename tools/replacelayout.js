@@ -34,6 +34,9 @@ var Greper = (function () {
     Greper.prototype.setResultAction = function (resultAction) {
         this.resultAction = resultAction;
     };
+    Greper.prototype.setValidAction = function (validAction) {
+        this.validAction = validAction;
+    };
     Greper.prototype.grep = function (text) {
         var _this = this;
         var command = 'grep -R "' + text + '" .';
@@ -41,7 +44,7 @@ var Greper = (function () {
             var lines = stdout.split('\n');
             lines.forEach(function (line) {
                 var path = line.substring(0, line.indexOf(':'));
-                if (_this.valid(path)) {
+                if (_this.validAction ? _this.validAction(path) : _this.valid(path)) {
                     _this.resultAction(new FilePath(path));
                 }
             });
@@ -115,7 +118,7 @@ var Importer = (function () {
                         result += line + '\n';
                     }
                 });
-
+                result = result.trim();
                 if (!inside)
                     fs.writeFileSync(files.tsFile.absolute(), result);
             });
@@ -210,6 +213,13 @@ var layoutHtmlDecider = new LayoutHtmlDecider(DIR_PATH, PREFIX);
 var importer = new Importer(PREFIX);
 greper.setResultAction(function (file) {
     layoutHtmlDecider.decideHtmlFile(file);
+});
+greper.setValidAction(function (path) {
+    if (path.length <= 0)
+        return false;
+    if (path.indexOf('.ts') == -1)
+        return false;
+    return path.indexOf('/tools/') == -1;
 });
 layoutHtmlDecider.setResultAction(function (result) {
     console.log(result.htmlFile.absolute(), result.tsFile.absolute());

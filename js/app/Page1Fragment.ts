@@ -31,4 +31,3 @@ class Page1Fragment extends Fragment {
         $('#page1fragment_text').html('your name is ' + this.text);
     }
 }
-
