@@ -1,0 +1,22 @@
+{
+  "name": "makimakijs",
+  "version": "0.0.0",
+  "description": "makimakijs ==========",
+  "main": "makimakibuild.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/naosim/makimakijs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naosim/makimakijs/issues"
+  },
+  "homepage": "https://github.com/naosim/makimakijs",
+  "dependencies": {
+    "node-minify": "^0.10.5"
+  }
+}
