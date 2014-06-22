@@ -1,6 +1,6 @@
 /// <reference path="Fragment.ts" />
 /// <reference path="Router.d.ts" />
-/// <reference path="../jquery/jquery.d.ts" />
+/// <reference path="jquery.d.ts" />
 class FragmentId {
     htmlId: string;
     cssId: string;
@@ -35,21 +35,21 @@ class FragmentsController {
     stopLastFragment() {
         var current = this.fragmentHistory.current();
         if(!current) return;
-        
+
         current.fragment.onStop();
         $(current.id.cssId).css('display', 'none');
     }
 
     pop() {
         this.stopLastFragment();
-        
+
         var current = this.fragmentHistory.current();
         var fragment = current.fragment;
         fragment.destroy();
         var result = fragment.result;
         $(current.id.cssId).remove();
         this.fragmentHistory.pop();
-        
+
         $(this.fragmentHistory.current().id.cssId).css('display', 'block');
         this.fragmentHistory.current().fragment.onStart();
         this.fragmentHistory.current().fragment.onResult(result);
@@ -57,7 +57,7 @@ class FragmentsController {
 
     push(fragmentClass: typeof Fragment, query:any) {
         this.stopLastFragment();
-        
+
         var id = FragmentId.create();
         var html = '<li id="' + id.htmlId + '"></li>';
         $(RouterFragment.routerId.cssId).append(html);
@@ -84,17 +84,17 @@ class RouterFragment extends Fragment {
         super();
     }
 
-    init(data: {$container: any; query?:any}, parent?: Fragment) { 
+    init(data: {$container: any; query?:any}, parent?: Fragment) {
         super.init(data, parent);
         this.fragmentsController = new FragmentsController(data.$container);
     }
 
     getHtml(): string { return '<ul id="' + RouterFragment.routerId.htmlId + '"></ul>'; }
-    
+
     setManifest(ary: {url:string; fragmentClass:typeof Fragment; isFirst?: boolean}[]){
         var firstLocation;
-                
-        var action = (manifest: {url:string; fragmentClass:typeof Fragment; isFirst?: boolean}) => {            
+
+        var action = (manifest: {url:string; fragmentClass:typeof Fragment; isFirst?: boolean}) => {
             var routingAction = (req:{query: any;}, next: any)=>{
                 var isBack = () => {
                     var fragment = this.fragmentsController.current();
@@ -102,11 +102,11 @@ class RouterFragment extends Fragment {
                 };
                 isBack() ? this.fragmentsController.pop() : this.fragmentsController.push(manifest.fragmentClass, req.query);
             };
-            
+
             this.router.addRoute(manifest.url, routingAction);
             if(manifest.isFirst) firstLocation = manifest.url;
         };
-        
+
         ary.forEach(action);
         if(location.href.indexOf('#') == -1) {
             // ルートで来た ex)index.html

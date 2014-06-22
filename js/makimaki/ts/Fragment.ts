@@ -1,4 +1,4 @@
-/// <reference path="../jquery/jquery.d.ts" />
+/// <reference path="jquery.d.ts" />
 
 class Result {
     requestId: number;
@@ -15,7 +15,7 @@ class Fragment {
     parent: Fragment;
     result: Result;
     constructor() {
-        
+
     }
 
     init(data: {$container: any; query?:any}, parent?: Fragment) {
@@ -24,7 +24,7 @@ class Fragment {
         this.parent = parent;
         this.result = new Result(this.data.query);
     }
-    
+
     getHtml(): string { return ''; }
     onStart(){}
     onStop(){}
