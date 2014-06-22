@@ -18,3 +18,10 @@ makimakijs
   - サーバがなくてもMock化してうごく
   - strictでつくる
   - vue.js, router.js, jquery, taffyDB
+
+# makimaki.jsのビルド
+コードはtypescriptで書かれているため、buildが必要です。  
+下記を実行してください。  
+
+`npm install`  
+`node makimakibuild.js`
